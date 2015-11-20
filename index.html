@@ -1,0 +1,273 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.3.0/animate.min.css">
+<link rel="stylesheet" href="code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="code.jquery.com/jquery-1.10.2.js"></script>
+<script src="code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+var i = 0;
+var wheight = window.innerHeight;
+var wwidth = window.innerWidth;
+
+function createWindow(content,style,title){
+	i++;
+	var node = document.createElement("div");
+    node.setAttribute('class','animated bounceIn window');
+    node.setAttribute('draggable','true');
+    node.setAttribute('id',i);
+    var whe = document.getElementById('windowheader').innerHTML;
+    var html = whe
+    .replace('[title]',title)
+    .replace(/idme/g,i);
+    node.innerHTML = html+'<p class="wcontent">'+content+'</p>';
+
+    var p = generatePlacement(node);
+    node.setAttribute('style','top:'+p.top+';left:'+p.left+';');
+    document.body.appendChild(node);
+    if(i === 1) document.getElementById('1').querySelector('.left.ic').setAttribute('style','display:none');
+    $('.window').draggable();
+    return i;
+}
+function runCommand(stage,option,id){
+	switch(stage){
+		case 'startup':
+			switch(option){
+				default:
+					typeText(
+					[
+						'BOOTING UP...',
+						'LOADING JAVASCRIPTS...',
+						'LOADING CSS...',
+						'LOADING HTMLS...',
+						'LOADING FOOD...',
+						'...................................',
+						'STARTUP COMPLETE!',
+						'...................................',
+						'...................................',
+						'Oh, hey.',
+						'Thanks for starting me.',
+						'...................................',
+						'I haven\'t been restarted in a long time.',
+						'...................................',
+						'So you\'re here to learn about the all-powerful Patrick?',
+						'...................................',
+						'Oh well, I\'m his bot.',
+						'...................................',
+						'How can I help you?',
+					],id,function(){
+						showButtons([
+							{
+								text:'Projects',
+								color:'blue',
+								com:'var win = createWindow(\'\',\'top:50px;left:10px;\',\'Projects\'); runCommand(\'info\',\'projects\',win);'
+							},
+							{
+								text:'About',
+								color:'green',
+								com:'var win = createWindow(\'\',\'top:50px;left:10px;\',\'About\'); runCommand(\'info\',\'about\',win);'
+							},
+							{
+								text:'Contact',
+								color:'red',
+								com:'var win = createWindow(\'\',\'top:50px;left:10px;\',\'Contact Info\'); runCommand(\'info\',\'contact\',win);'
+							}
+						],id)
+					});
+
+				break;
+			}
+		break;
+		case 'info':
+			switch(option){
+				case 'projects':
+				typeText(
+					[
+						'I\'m working on some pretty cool projects.',
+						 '.................................',
+						 'You can see a bunch of cool stuff at my Github',
+						 'Work will be added here as it arrives.',
+						 '.................................',
+						 '* GitHub - github.com/potrock'
+					]
+				,id);
+			break;
+				case 'about':
+					typeText(
+						[
+							'If you haven\'t figured out by now, my name is Patrick.',
+							'I am a young aspiring Programmer and Developer.',
+							'I started programming when I was 10 but only really got into it when I was 13.',
+							'I am now 14 years old',
+							'.................................',
+							'I have owned several minecraft servers, which gave me a doorway into the technology world.',
+							'I am one of the founders of the Crescent Coding Club'
+						]
+					,id);
+				break;
+				case 'contact':
+					typeText(
+						[
+							'I am currently NOT available for freelance work, however if you\'d like to contact me for any reason, please use one of the following methods.',
+							'.................................',
+							'* Telegram -- @potrock',
+							'.................................',
+							'* Skype -- pwblais',
+							'.................................',
+							'* Twitter -- @potrock_',
+							'.................................',
+						]
+					,id);
+				break;
+				default:
+					typeText(['Info subsection not found.','Please consult the help menu.'],id);
+				break;
+			}
+		break;
+		default:
+			typeText(['Command not found.','Please consult the help menu.'],id);
+		break;
+	}
+}
+
+function removeWindow(id){
+	if(id === 1) return alert('Why would you want to leave? :(');
+	document.getElementById(id).remove();
+}
+function maximizeWindow(id){
+	if(id === 1) return alert('That would be a bad idea.');
+	document.getElementById(id).setAttribute('style','top:0;right:0;width:100%;height:100vh;');
+}
+
+function showButtons(arr,id){
+	var el = document.getElementById(id);
+	el.innerHTML += '<p class="buttons">';
+	for(var i=0;i<arr.length;i++){
+		el.innerHTML += '<a class="button bg-'+arr[i].color+'" onclick="'+arr[i].com+'">'+arr[i].text+'</a>'
+	}
+	el.innerHTML += '</p>';
+}
+function typeText(arr,el,cb){
+	el = document.getElementById(el).querySelector('.wcontent');
+	var interval = 45;
+	(function draw(row, column) {
+	    el.innerHTML += arr[row][column++];
+	    if (column === arr[row].length) {
+	        row += 1;
+	        column = 0;
+	        el.innerHTML += '<br>';
+	    }
+	    while (typeof arr[row] === 'function') {
+	        arr[row++]();
+	    }
+	    if (row < arr.length) {
+	        setTimeout(draw.bind(this, row, column), interval);
+	    }else{
+	    	cb();
+	    }
+	})(0, 0);
+}
+function generatePlacement(element){
+	console.log(document.body.offsetHeight);
+	console.log(document.body.offsetWidth);
+	var x = ((Math.floor(Math.random() * document.body.offsetWidth) + 1)/2)-40;
+	var y = ((Math.floor(Math.random() * document.body.offsetHeight) + 1)/2)-100;
+	if(x<0) x=20;
+	if(y<0) y=20;
+	return {left:x,top:y};
+}
+window.onload = function(){
+	var original = createWindow('','','Startup - PatBot');
+	runCommand('startup','', original);
+}
+</script>
+<style>
+	@import url(http://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700);
+	body{
+		background:#2980b9;
+		color:#80FF00;
+		width:100%;
+		height:100vh;
+		overflow:hidden;
+	}
+	.window{
+		background:#232628;
+		width:500px;
+		min-height:300px;
+		padding:0;
+		border:1px solid rgba(0,0,0,0.5);
+		font-family:'Roboto Mono';
+		box-shadow:1px 1px 1px rgba(0,0,0,.5);
+		position:absolute;
+	}
+	.button{
+		padding:10px;
+		color:white;
+		border-radius:0;
+		margin:5px;
+	}
+	.button:hover{
+		text-decoration:underline;
+		cursor:pointer;
+	}
+	.bg-blue{
+		background-color:#3498db;
+	}
+	.bg-green{
+		background-color:#2ecc71;
+	}
+	.bg-red{
+		background-color:#e74c3c;
+	}
+	.bg-yellow{
+		background-color:#f1c40f;
+	}
+	.absolute{
+
+	}
+	.rounded{
+		border-radius:10px;
+	}
+	.icon{
+		height:15px;
+		margin:2px;
+		width:15px;
+		display:inline-block;
+		-webkit-margin-before: 2px;
+		-webkit-margin-after: 0em;
+	}
+	.icon:hover{
+		cursor:pointer;
+	}
+	.il{
+		display:inline-block;
+	}
+	.wheader{
+		width:100%;
+		height:20px;
+		color:#80FF00;
+		background:rgba(0,0,0,0.5);
+	}
+	.wcontent{
+		padding:5px;
+	}
+	.left{
+		float:left;
+	}
+	.ic{
+		position:absolute;
+	}
+</style>
+<title>Patrick B. | Home</title>
+<body>
+	<div id="windowheader" style="display:none">
+		<div class="wheader">
+			<center>
+				<div class="left ic">
+					<p class="bg-red rounded icon il" onclick="removeWindow(idme)"></p>
+					<p class="bg-yellow rounded icon il" onclick="removeWindow(idme)"></p>
+					<p class="bg-green rounded icon il" onclick="maximizeWindow(idme)"></p>
+				</div>
+			<span>[title]</span>
+			</center>
+		</div>
+	</div>
+</body>
