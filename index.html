@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.3.0/animate.min.css">
 <link rel="stylesheet" href="code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="code.jquery.com/jquery-1.10.2.js"></script>
@@ -7,7 +6,6 @@
 var i = 0;
 var wheight = window.innerHeight;
 var wwidth = window.innerWidth;
-
 function createWindow(content,style,title){
 	i++;
 	var node = document.createElement("div");
@@ -19,18 +17,11 @@ function createWindow(content,style,title){
     .replace('[title]',title)
     .replace(/idme/g,i);
     node.innerHTML = html+'<p class="wcontent">'+content+'</p>';
-
     var p = generatePlacement(node);
     node.setAttribute('style','top:'+p.top+';left:'+p.left+';');
     document.body.appendChild(node);
     if(i === 1) document.getElementById('1').querySelector('.left.ic').setAttribute('style','display:none');
     $('.window').draggable();
-        $(document).ready(function() {
-        var userInput = $('#userInput');
-        userInput.click(function() {
-            alert(userInput.val());
-        });
-    });
     return i;
 }
 function runCommand(stage,option,id){
@@ -61,12 +52,23 @@ function runCommand(stage,option,id){
 						'How can I help you?',
 					],id,function(){
 						showButtons([
-						var userInput;
-        					userInput = document.getElementById('userInput').value;
+							{
+								text:'Projects',
+								color:'blue',
+								com:'var win = createWindow(\'\',\'top:50px;left:10px;\',\'Projects\'); runCommand(\'info\',\'projects\',win);'
+							},
+							{
+								text:'About',
+								color:'green',
+								com:'var win = createWindow(\'\',\'top:50px;left:10px;\',\'About\'); runCommand(\'info\',\'about\',win);'
+							},
+							{
+								text:'Contact',
+								color:'red',
+								com:'var win = createWindow(\'\',\'top:50px;left:10px;\',\'Contact Info\'); runCommand(\'info\',\'contact\',win);'
+							}
 						],id)
 					});
-    }
-
 				break;
 			}
 		break;
@@ -121,7 +123,6 @@ function runCommand(stage,option,id){
 		break;
 	}
 }
-
 function removeWindow(id){
 	if(id === 1) return alert('Why would you want to leave? :(');
 	document.getElementById(id).remove();
@@ -130,7 +131,6 @@ function maximizeWindow(id){
 	if(id === 1) return alert('That would be a bad idea.');
 	document.getElementById(id).setAttribute('style','top:0;right:0;width:100%;height:100vh;');
 }
-
 function showButtons(arr,id){
 	var el = document.getElementById(id);
 	el.innerHTML += '<p class="buttons">';
@@ -176,7 +176,7 @@ window.onload = function(){
 <style>
 	@import url(http://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700);
 	body{
-		background:#b92929;
+		background:#2980b9;
 		color:#80FF00;
 		width:100%;
 		height:100vh;
@@ -215,7 +215,6 @@ window.onload = function(){
 		background-color:#f1c40f;
 	}
 	.absolute{
-
 	}
 	.rounded{
 		border-radius:10px;
@@ -259,8 +258,6 @@ window.onload = function(){
 					<p class="bg-red rounded icon il" onclick="removeWindow(idme)"></p>
 					<p class="bg-yellow rounded icon il" onclick="removeWindow(idme)"></p>
 					<p class="bg-green rounded icon il" onclick="maximizeWindow(idme)"></p>
-					<input type="text" name="enter" class="enter" value="" id="userInput"/>
-    					<input type="button" value="click" />
 				</div>
 			<span>[title]</span>
 			</center>
