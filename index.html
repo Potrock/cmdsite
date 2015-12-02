@@ -4,6 +4,12 @@
 <script src="code.jquery.com/jquery-1.10.2.js"></script>
 <script src="code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script>
+    $(document).ready(function() {
+        var lol = $('#userInput');
+        userInput.click(function() {
+            alert(userInput.val());
+        });
+    });
 var i = 0;
 var wheight = window.innerHeight;
 var wwidth = window.innerWidth;
@@ -265,6 +271,8 @@ window.onload = function(){
 					<p class="bg-red rounded icon il" onclick="removeWindow(idme)"></p>
 					<p class="bg-yellow rounded icon il" onclick="removeWindow(idme)"></p>
 					<p class="bg-green rounded icon il" onclick="maximizeWindow(idme)"></p>
+					<input type="text" name="enter" class="enter" value="" id="lolz"/>
+    					<input type="button" value="click" />
 				</div>
 			<span>[title]</span>
 			</center>
