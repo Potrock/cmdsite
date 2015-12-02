@@ -78,6 +78,10 @@ function runCommand(stage,option,id){
 							}
 						],id)
 					});
+					var userInput;
+    					function onload() { 
+        				userInput = document.getElementById('userInput').value;
+    }
 
 				break;
 			}
@@ -271,7 +275,7 @@ window.onload = function(){
 					<p class="bg-red rounded icon il" onclick="removeWindow(idme)"></p>
 					<p class="bg-yellow rounded icon il" onclick="removeWindow(idme)"></p>
 					<p class="bg-green rounded icon il" onclick="maximizeWindow(idme)"></p>
-					<input type="text" name="enter" class="enter" value="" id="lolz"/>
+					<input type="text" name="enter" class="enter" value="" id="userInput"/>
     					<input type="button" value="click" />
 				</div>
 			<span>[title]</span>
