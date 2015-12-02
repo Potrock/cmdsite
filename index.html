@@ -60,24 +60,11 @@ function runCommand(stage,option,id){
 						'...................................',
 						'How can I help you?',
 					],id,function(){
-						showButtons([
-							{
-								text:'Projects',
-								color:'blue',
-								com:'var win = createWindow(\'\',\'top:50px;left:10px;\',\'Projects\'); runCommand(\'info\',\'projects\',win);'
-							},
-							{
-								text:'About',
-								color:'green',
-								com:'var win = createWindow(\'\',\'top:50px;left:10px;\',\'About\'); runCommand(\'info\',\'about\',win);'
-							},
-							{
-								text:'Contact',
-								color:'red',
-								com:'var win = createWindow(\'\',\'top:50px;left:10px;\',\'Contact Info\'); runCommand(\'info\',\'contact\',win);'
-							}
-						],id)
-					});
+						inputField([
+							var lol;
+    							function showbox() { 
+        						userInput = document.getElementById('userInput').value;
+    }
 
 				break;
 			}
