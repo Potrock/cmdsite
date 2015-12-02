@@ -4,12 +4,6 @@
 <script src="code.jquery.com/jquery-1.10.2.js"></script>
 <script src="code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script>
-    $(document).ready(function() {
-        var userInput = $('#userInput');
-        userInput.click(function() {
-            alert(userInput.val());
-        });
-    });
 var i = 0;
 var wheight = window.innerHeight;
 var wwidth = window.innerWidth;
@@ -31,6 +25,12 @@ function createWindow(content,style,title){
     document.body.appendChild(node);
     if(i === 1) document.getElementById('1').querySelector('.left.ic').setAttribute('style','display:none');
     $('.window').draggable();
+        $(document).ready(function() {
+        var userInput = $('#userInput');
+        userInput.click(function() {
+            alert(userInput.val());
+        });
+    });
     return i;
 }
 function runCommand(stage,option,id){
