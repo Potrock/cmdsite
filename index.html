@@ -1,19 +1,11 @@
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.3.0/animate.min.css">
 <link rel="stylesheet" href="code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="code.jquery.com/jquery-1.10.2.js"></script>
 <script src="code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script>
-    $(document).ready(function() {
-        var lol = $('#userInput');
-        userInput.click(function() {
-            alert(userInput.val());
-        });
-    });
 var i = 0;
 var wheight = window.innerHeight;
 var wwidth = window.innerWidth;
-
 function createWindow(content,style,title){
 	i++;
 	var node = document.createElement("div");
@@ -25,7 +17,6 @@ function createWindow(content,style,title){
     .replace('[title]',title)
     .replace(/idme/g,i);
     node.innerHTML = html+'<p class="wcontent">'+content+'</p>';
-
     var p = generatePlacement(node);
     node.setAttribute('style','top:'+p.top+';left:'+p.left+';');
     document.body.appendChild(node);
@@ -44,7 +35,7 @@ function runCommand(stage,option,id){
 						'LOADING JAVASCRIPTS...',
 						'LOADING CSS...',
 						'LOADING HTMLS...',
-						'LOADING FOOD (nice thomas)...',
+						'LOADING FOOD...',
 						'...................................',
 						'STARTUP COMPLETE!',
 						'...................................',
@@ -60,12 +51,10 @@ function runCommand(stage,option,id){
 						'...................................',
 						'How can I help you?',
 					],id,function(){
-						inputField([
-							var lol;
-    							function showbox() { 
-        						userInput = document.getElementById('userInput').value;
-    }
-
+						showField([
+							console.log("Working!");
+						],id)
+					});
 				break;
 			}
 		break;
@@ -120,7 +109,6 @@ function runCommand(stage,option,id){
 		break;
 	}
 }
-
 function removeWindow(id){
 	if(id === 1) return alert('Why would you want to leave? :(');
 	document.getElementById(id).remove();
@@ -129,14 +117,11 @@ function maximizeWindow(id){
 	if(id === 1) return alert('That would be a bad idea.');
 	document.getElementById(id).setAttribute('style','top:0;right:0;width:100%;height:100vh;');
 }
-
-function showButtons(arr,id){
-	var el = document.getElementById(id);
-	el.innerHTML += '<p class="buttons">';
-	for(var i=0;i<arr.length;i++){
-		el.innerHTML += '<a class="button bg-'+arr[i].color+'" onclick="'+arr[i].com+'">'+arr[i].text+'</a>'
-	}
-	el.innerHTML += '</p>';
+function showField() {
+    var x = document.createElement("INPUT");
+    x.setAttribute("type", "text");
+    x.setAttribute("value", "Tell me what to do!");
+    original.appendChild(x);
 }
 function typeText(arr,el,cb){
 	el = document.getElementById(el).querySelector('.wcontent');
@@ -214,7 +199,6 @@ window.onload = function(){
 		background-color:#f1c40f;
 	}
 	.absolute{
-
 	}
 	.rounded{
 		border-radius:10px;
@@ -258,8 +242,6 @@ window.onload = function(){
 					<p class="bg-red rounded icon il" onclick="removeWindow(idme)"></p>
 					<p class="bg-yellow rounded icon il" onclick="removeWindow(idme)"></p>
 					<p class="bg-green rounded icon il" onclick="maximizeWindow(idme)"></p>
-					<input type="text" name="enter" class="enter" value="" id="lolz"/>
-    					<input type="button" value="click" />
 				</div>
 			<span>[title]</span>
 			</center>
